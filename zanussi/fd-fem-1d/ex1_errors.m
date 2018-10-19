@@ -14,8 +14,8 @@ progBar = struct( ...
     'e', 2 * length(H), ...
     'i', 0);
 
-Efdm = arrayfun(@(h) fdmError(h), H);
-Efem = arrayfun(@(h) femError(h), H);
+Efdm = arrayfun(@fdmError, H);
+Efem = arrayfun(@femError, H);
 
 figure('Name', 'FDM error analysis');
 subplot(2,1,1);
@@ -37,10 +37,10 @@ global a b Uref Fgen;
 updateProgress('FDM', h);
 
 x = (a+h:h:b-h)';
-eMax = norm(Uref(x) - fdm(x, Fgen), inf);
+eMax = norm(Uref(x) - fdm(x, Fgen), inf); % norm(X , inf) ~ max(X)
 end
 
-function eMax = femError(h)
+function eMax = femError( h )
 global a b Uref Fgen;
 updateProgress('FEM', h);
 
