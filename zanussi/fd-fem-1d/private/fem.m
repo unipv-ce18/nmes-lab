@@ -1,9 +1,10 @@
 function U = fem( pts, fGen )
-%FDM Calculates points of U satisfying -U'' = F using Finite Elements
+%FEM Calculates points of U satisfying -U'' = F using Finite Elements
 %   U = FEM(PTS, FGEN) gives values of U calculated in PTS,
 %   FGEN is a generator function for values of F in PTS.
 
-[sz, h] = ptsinfo(pts);
+sz = length(pts);
+h = pts(2) - pts(1);
 
 % For FEM, F are the values of int(f(x) * phi_i, a, b) at anchor points
 ifGen = @(x) mintegral( ...
