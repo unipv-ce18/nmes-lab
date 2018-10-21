@@ -1,16 +1,25 @@
-mesh = [0 .1 .4 .6 .7 1];
-Fgen = @(x) 16*pi^2*sin(4*pi*x);
+%% FEM1Dnonuniform test case
 
+% Test this with function #2 from exercise 1
+Fgen = @(x) 16*pi^2*sin(4*pi*x); % Generator for values of F
+Utgt = @(x) sin(4*pi*x); % Target U (for plot comparison)
+
+% Define an arbitrary mesh points from 0 to 1
+mesh = [0 .1 .4 .6 .7 1];
+
+% Calculate U...
 U = FEM1Dnonuniform(mesh, Fgen);
 
-tgtf = @(x) sin(4*pi*x);
-
-figure(1);
+% ...and plot it
+figure('Name', 'FEM test case, non-uniform mesh');
 hold on;
-fplot(tgtf, [0 1], 'r');
+fplot(Utgt, [0 1], 'r');
 plot(mesh, U, 'bx');
 
-%%
+%% FEM1DNeumann test case
+
+% TODO:
+% - Clean up
 
 %{
 Testing FEM1DNeumann w/ e.g.

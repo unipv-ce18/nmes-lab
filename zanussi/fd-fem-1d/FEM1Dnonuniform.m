@@ -3,45 +3,25 @@ function U = FEM1Dnonuniform( mesh, f )
 %   U = FEM1DNONUNIFORM(MESH, F) calculates U in the points provided by
 %   MESH satisfying -U'' = F with boundary U(MESH(1)) = U(MESH(END)) = 0.
 
-% TODOs:
-% - Auto-generate A for any mesh size
-% - Modularization + documentation
-
-% Calculate H values for each interval
+% Calculate H values for each interval (e.g. [1 5 15] -> [4 10])
 h = sum([mesh(2:end); -mesh(1:end-1)]);
-disp('Spacings:');
-disp(h);
 
-% Inner X values
+% Inner X values (we need to calculate U only on these points)
 x = mesh(2:end-1)';
-disp('Inner:');
-disp(x);
 
-
-% Define phi_i(x)
+% Define phi_i(t), rises at x(i-1), max at x(i), falls at x(i+1)
 basisf = @(i, t) triangularPulse(x(i)-h(i), x(i), x(i)+h(i+1), t);
 
-% A(i,j) = 1/hl+1/hr on i = j;
+% Generate A matrix for a non-uniform mesh
+A = amatrixenu(h);
 
-A = [ 1/h(1)+1/h(2)  -1/h(2)        0               0
-      -1/h(2)        1/h(2)+1/h(3)  -1/h(3)         0
-      0              -1/h(3)        1/h(3)+1/h(4)  -1/h(4)
-      0              0              -1/h(4)        1/h(4)+1/h(5) ];
-disp('A matrix:');
-disp(A);
-
-
+% Compute int(f * phi_i) from a to b (0 outside x(i-1):x(i+1)), at each i
 ifGen = @(i) integral( ...
     @(t) f(t) .* basisf(i, t), ...
     x(i)-h(i), x(i)+h(i+1));
-
 F = arrayfun(ifGen, (1:size(x))');
-disp('F vector:');
-disp(F);
 
-U = A \ F;
-
-U = [0;U;0];
+% Return U, pad with zeros (boundary conditions) to comply with given mesh
+U = [ 0; A \ F; 0 ];
 
 end
-

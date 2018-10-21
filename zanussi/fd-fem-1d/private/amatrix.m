@@ -1,12 +1,14 @@
-function [ A ] = amatrix( sz, h, method )
+function A = amatrix( sz, h, method )
 %AMATRIX Creates an A matrix for the specified numerical method
 %   A = AMATRIX(SZ, H, 'fd') makes an sz*sz "A" matrix for use
-%   in a Finite Differences algorithm, using H for step size.
+%   in a Finite Difference or Element algorithm, using H for step size.
 %   See this <a
 %   href="matlab:web('https://en.wikipedia.org/wiki/Finite_difference_coefficient')">wiki article</a> for more information.
 %
 %   A = AMATRIX(SZ, H, 'fe') makes an sz*sz "A" matrix for use in
 %   a Finite Element algorithm, using H for step size.
+%
+%   See also AMATRIXENU
 
 Abase = sparse( ...
     [1:sz 2:sz 1:sz-1], ...
