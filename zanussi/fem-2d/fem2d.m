@@ -3,7 +3,7 @@ oldpath = addpath('./vendor', './vendor/distmesh');
 % We need Symbolic Math to compute the exact laplacian for reference
 syms x y;
 Ugen(x, y) = sin(4*pi*sqrt(x^2+y^2))/sqrt(x^2+y^2);
-Fgen = laplacian(Ugen, [x y]);
+Fgen = -laplacian(Ugen, [x y]);
 
 % Generate the mesh (and close that popup)
 [p, t, I, B] = triangular_mesh('circle', .1);
@@ -49,7 +49,7 @@ for tIdx = 1:length(t)
         for j = innerVerts
             jIdx = find(tDef == j);
             jCoordsSort = circshift(tCoords, -jIdx+1);
-            ej = -diff(jCoordsSort(2:end,:));
+            ej = diff(jCoordsSort(2:end,:));
             
             A(i,j) = A(i,j) + dot(ei, ej)/(4*area.^2);
         end
