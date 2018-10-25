@@ -10,7 +10,8 @@ Fgen = laplacian(Ugen, [x y]);
 close(1);
 
 % Allocate A and F and initialize to zero
-A = zeros(length(I), length(I));
+% (statistically nnz(A)/length(A) ~ 6.6)
+A = spalloc(length(I), length(I), 7*length(I));
 F = zeros(length(I), 1);
 
 bh = waitbar(0, ...
