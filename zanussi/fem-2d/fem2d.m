@@ -51,13 +51,13 @@ for tIdx = 1:length(t)
             jCoordsSort = circshift(tCoords, -jIdx+1);
             ej = diff(jCoordsSort(2:end,:));
             
-            A(i,j) = A(i,j) + dot(ei, ej)/(4*area.^2);
+            A(i,j) = A(i,j) + dot(ei, ej)/(4*area);
         end
         
         % -- Generate also F for this triangle --
-        % We need to find the barycenter and evaluate F in it
+        % We need to find the barycenter, evaluate F in it, then integrate
         c = sum(tCoords) / 3;
-        F(i) = F(i) + 1/3 * double(Fgen(c(1), c(2)));
+        F(i) = F(i) + 1/3 * double(Fgen(c(1), c(2))) * area;
     end
 
     perc = tIdx/length(t);
