@@ -23,7 +23,7 @@ for tIdx = 1:length(t)
     % Get the indexes of the vertices of this triangle
     tDef = t(tIdx, :);
     
-    % And then get the vertices
+    % And then get their coordinates
     tCoords = p(tDef, :);
     
     if ispolycws(tCoords)
@@ -36,7 +36,7 @@ for tIdx = 1:length(t)
              tCoords(3,1)*(tCoords(1,2)-tCoords(2,2)) ) / 2;
     
     % We need to iterate only on the vertices *inside* the mesh
-    innerVerts = intersect(tDef, I);
+    innerVerts = intersect(tDef, I, 'stable');
 
     for i = innerVerts
         % Opposite edge length: rotate the triangle array until the current
