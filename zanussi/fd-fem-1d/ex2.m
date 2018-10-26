@@ -18,25 +18,21 @@ plot(mesh, U, 'bx');
 
 %% FEM1DNeumann test case
 
-% TODO:
-% - Clean up
+% Test this with an altered version of function #1 from exercise 1
+% i.e. -U'' = F, U(0) = 0, U'(1) = 2, F = -1
 
-%{
-Testing FEM1DNeumann w/ e.g.
-  -U'' = F, U(0) = 0, U'(1) = 2, F = -1
+% Use Mathematica to reconstruct the primitive:
+%   DSolve[{-u''[x] == -1, u[0] == 0, u'[1] == 2}, u[x], x]
+% gives u[x] -> 1/2 (2 x + x^2)
 
-DSolve[{-u''[x] == -1, u[0] == 0, u'[1] == 2}, u[x], x]
-  u[x] -> 1/2 (2 x + x^2)
-%}
 N = 11;
 Fgen = @(x) -1;
 gamma = 2;
-tgtf = @(x) x.^2/2 + x;
+Utgt = @(x) x.^2/2 + x;
 
 U = FEM1DNeumann(N, Fgen, gamma);
-x = linspace(0,1,N)';
 
-figure(2);
+figure('Name', 'FEM test case, Neumann boundary condition');
 hold on;
-fplot(tgtf, [0 1], 'r');
-plot(x, U,  'bx');
+fplot(Utgt, [0 1], 'r');
+plot(linspace(0,1,N), U, 'bx');
