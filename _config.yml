@@ -1,0 +1,11 @@
+collections:
+  articles:
+  article_sections:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "article_sections"
+    values:
+      layout: "article_section"

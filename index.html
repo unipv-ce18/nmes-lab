@@ -1,0 +1,42 @@
+---
+title: Numerical Methods Lab Cookbook
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.title }}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="A very simple cookbook of numerical algorithms">
+    {%- include base.html %}
+    <link rel="stylesheet" href="{{ base }}/assets/style/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Eczar|Proza+Libre" rel="stylesheet"> 
+  </head>
+  <body>
+    <header>
+      <h1>{{ page.title }}</h1>
+      <em>
+        A very, very simple guide to implement differential equation solving algorithms for use in a computer.
+        This is not intended as a replacement for any Numerical Methods course but aims to provide an intuition
+        for the inner workings of the presented algorithms.
+      </em>
+    </header>
+    <main>
+      {%- for article in site.articles -%}
+        <section>
+          <h2>{{ article.name }}</h2>
+          {{ article.content | markdownify }}
+          <ul>
+            {%- assign this_articles = site.article_sections | where: 'article', article.name -%}
+            {%- for section in this_articles -%}
+            <li><a href="{{ base }}{{ section.url }}">{{ section.section }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endfor -%}
+    </main>
+    <footer>
+      <div>This site uses an inverted color scheme to save both your eyes and your screen; hope you like it.</div>
+      <div>This site's content and source code are released in the public domain</div>
+    </footer>
+  </body>
+</html>

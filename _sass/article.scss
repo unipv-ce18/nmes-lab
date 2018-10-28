@@ -1,0 +1,159 @@
+@import 'main';
+
+header {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 10;
+  padding: 1rem 5vw;
+
+  h1, h2 {
+    float: left;
+    line-height: 2rem;
+    margin: 0;
+  }
+
+  h2 {
+    margin-left: 1rem;
+  }
+}
+
+article {
+  margin: 5rem 10vw 3rem;
+}
+
+h1 {
+  font-size: 1.6em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+p {
+  line-height: 2em;
+}
+
+p:not(:first-of-type) {
+  margin-top: 60px;
+}
+
+p .katex .fbox {
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+article p .katex-display {
+  margin-top: 30px;
+}
+
+.greenhl {
+  color: $color-hl-green;
+}
+
+.bluehl {
+  color: $color-hl-blue;
+}
+
+.redhl {
+  color: $color-hl-red;
+}
+
+.dredhl {
+  color: $color-hl-dred;
+}
+
+svg {
+  .plot-fn {
+    fill: #ccc;
+    font-size: .8em;
+    font-style: italic;
+  }
+
+  .plot-label {
+    fill: #eee;
+    font-size: .4em;
+    font-style: italic;
+  }
+
+  .axis {
+    stroke: #bbb;
+  }
+
+  .plot {
+    stroke: #eee;
+    stroke-width: 1.5;
+    fill: none;
+  }
+
+  .plot-green {
+    .plot-fn {
+      fill: $color-hl-green;
+    }
+    .plot {
+      stroke: $color-hl-green;
+    }
+  }
+
+  .plot-blue {
+    .plot-fn {
+      fill: $color-hl-blue;
+    }
+    .plot {
+      stroke: $color-hl-blue;
+    }
+  }
+
+  .plot-red {
+    .plot-fn {
+      fill: $color-hl-red;
+    }
+    .plot {
+      stroke: $color-hl-red;
+    }
+  }
+
+  .plot-dred {
+    .plot-fn {
+      fill: $color-hl-dred;
+    }
+    .plot {
+      stroke: $color-hl-dred;
+    }
+    .plotarea {
+      fill: $color-hl-dred;
+      opacity: .2;
+    }
+  }
+
+}
+
+div.imgh {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.page-navigation {
+  font-family: $font-sans;
+  font-size: 14px;
+  display: block;
+  width: auto;
+  overflow: hidden;
+
+  a {
+    display: block;
+    color: #ddd;
+    background-color: rgba(255, 255, 255, .2);
+    padding: .3em .5em;
+    border-radius: 8px;
+    margin: 1em 1em;
+    &.prev {
+      float: left;
+    }
+    &.next {
+      float: right;
+    }
+  }
+}

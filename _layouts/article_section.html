@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%- assign this_article = site.articles | where: 'name', page.article | first %}
+    <title>{{ this_article.short_name }} · {{ page.section }}</title>
+    <meta charset="utf-8">
+    {%- include base.html %}
+    <link rel="stylesheet" href="{{ base }}/assets/style/article.css" />
+    <link href="https://fonts.googleapis.com/css?family=Eczar|Proza+Libre" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://unpkg.com/katex@0.10.0-rc.1/dist/katex.min.css"
+          integrity="sha256-xhfwXOVSNtfqllKqZeJXC77C4gHlToAsBZ1VPuo78s0=" crossorigin="anonymous" />
+    <script defer src="{{ base }}/assets/script/main.js"></script>
+    <script defer src="https://unpkg.com/katex@0.10.0-rc.1/dist/katex.min.js"
+            integrity="sha256-pspcItwUMvvmTm21RgPNGHoFDNXjLi06FVGBpYZpm1c=" crossorigin="anonymous"></script>
+    <script defer src="https://unpkg.com/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+            integrity="sha256-TLdcLjbJwf/vIYaNuN5WjcVcPyLmTFxvIs2INCMHMJ8=" crossorigin="anonymous" onload="onAutoLoad();"></script>
+  </head>
+  <body>
+    <header>
+      <h1>{{ this_article.name }}</h1>
+      <h2>{{ page.section }}</h1>
+    </header>
+    <article>
+      {{ content }}
+    </article>
+    <div class="page-navigation">
+      {%- if page.previous -%}
+        {%- if page.previous.article != page.article -%}
+        {%-   assign prev_prefix = page.previous.article | append: " · " -%}
+        {%- endif -%}
+        <a class="prev" href="{{ base }}{{ page.previous.url }}">&laquo; {{ prev_prefix }}{{ page.previous.section }}</a>
+      {%- endif -%}
+      {%- if page.next -%}
+        {%- if page.next.article != page.article -%}
+        {%-   assign next_prefix = page.next.article | append: " · " -%}
+        {%- endif -%}
+        <a class="next" href="{{ base }}{{ page.next.url }}">{{ next_prefix }}{{ page.next.section }} &raquo;</a>
+      {%- endif %}
+  </body>
+</html>

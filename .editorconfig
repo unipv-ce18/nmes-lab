@@ -1,0 +1,3 @@
+[*.{html,md,css,scss,js,yml}]
+indent_style = space
+indent_size = 2

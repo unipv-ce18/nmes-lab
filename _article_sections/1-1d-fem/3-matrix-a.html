@@ -1,0 +1,141 @@
+---
+article: Implementing 1D FEM
+section: Obtaining the A matrix
+---
+<!-- To allow CSS color lookup from script... -->
+<span class="dredhl"></span>
+<span class="greenhl"></span>
+
+<p>
+  Last time we left off with…
+
+  $$
+  \sum_{j=1}^{N-1} u_j \bigg(\underbrace{\epsilon \int_a^b \phi_j'\,\phi_i'\;dx}_{\bm{A}} +
+  \underbrace{\int_a^b \beta\,\phi_j'\,\phi_i\;dx}_{\bm{B}} \bigg) =
+  \underbrace{\int_a^b f\,\phi_i\;dx + \epsilon\,\gamma\,\phi_i(N_{DOF})}_{\underline{F}}
+  $$
+</p>
+
+<p>
+  …and its matrix form:
+
+  $$(\bm{A}+\bm{B})\;\underline{U}=\underline{F}$$
+</p>
+
+<p>
+  Let's plot $\phi_i(x)$ and $\phi_i'(x)$ so that we can calculate the coefficients $A_{ij} = \epsilon \int_a^b \phi_j'\phi_i'\,dx$ graphically:
+</p>
+<div class="imgh">
+  <svg width="440" height="150" viewBox="0 0 220 75">
+    <g class="plot-blue">
+      <text x="0" y="10" class="plot-fn">ϕ</text>
+      <path d="M 0 65 H 100 M 50 0 V 75" class="axis"/>
+      <path d="M 10 65 L 50 10 L 90 65" class="plot"/>
+
+      <g class="plot-label">
+        <text x="8" y="73">-h</text>
+        <text x="88" y="73">h</text>
+        <text x="54" y="10">1</text>
+      </g>
+    </g>
+    <g class="plot-red" transform="translate(120,0)">
+      <text x="98" y="10" class="plot-fn" text-anchor="end">ϕ'</text>
+      <path d="M 0 37.5 H 100 M 50 0 V 75" class="axis"/>
+      <path d="M 10 37.5 V 10 H 50 V 65 H 90 V 37.5" class="plot"/>
+
+      <g class="plot-label">
+        <text x="8" y="46">-h</text>
+        <text x="88" y="34">h</text>
+        <text x="52" y="12">1/h</text>
+        <text x="35" y="66">-1/h</text>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<p>
+  In the case $\dredhl{i} = \dredhl{j}$ we have (noting that we can limit our integration to the interval $[x_i-h, x_i+h]$):
+
+  $$
+  \def\inth{\int_{x_i-h}^{x_i+h}}
+  \begin{aligned}
+    A_{ii} &amp;= \epsilon \inth \phi_i'\,\phi_i'\,dx = \epsilon \inth \dredhl{(\phi_i')^2}\,dx
+  \\
+    &amp;= \epsilon \inth \frac{1}{h^2}\,dx = \epsilon\,2h\frac{1}{h^2} = \boxed{\epsilon\frac{2}{h}}
+  \end{aligned}
+  $$
+</p>
+<div class="imgh">
+  <svg width="200" height="150" viewBox="0 0 100 75">
+    <defs>
+      <path id="phip1" d="M 10 65 V 20 H 90 V 65"/>
+    </defs>
+    <g class="plot-dred">
+      <text x="98" y="10" class="plot-fn" text-anchor="end">(ϕ')²</text>
+      <path d="M 0 65 H 100 M 50 0 V 75" class="axis"/>
+      <use xlink:href="#phip1" class="plot"/>
+      <use xlink:href="#phip1" class="plotarea"/>
+
+      <g class="plot-label">
+        <text x="8" y="73">-h</text>
+        <text x="88" y="73">h</text>
+        <text x="54" y="16">1/h²</text>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<p>
+  We can similarly proceed to solve for the case $\greenhl{i} = \pm\bluehl{j}$,
+  knowing that the product is $\not=0$ only between $0$ and $h$…
+
+  $$
+  \begin{aligned}
+    A_{ij} &amp;= \epsilon \int_{x_i-h}^{x_i+h} \greenhl{\phi_i'}\,\bluehl{\phi_j'}\,dx = \epsilon \int_{x_i}^{x_i+h} \greenhl{-\frac{1}{h}} \bluehl{\frac{1}{h}}\,dx
+  \\
+    &amp;= \epsilon\, h \Big(-\frac{1}{h^2}\Big) = \boxed{-\epsilon\frac{1}{h}}
+  \end{aligned}
+  $$
+</p>
+<div class="imgh">
+  <svg width="300" height="150" viewBox="0 0 150 75">
+    <defs>
+      <path id="phip2" d="M 10 37.5 V 10 H 50 V 65 H 90 V 37.5"/>
+    </defs>
+    <g>
+      <path d="M 0 37.5 H 150 M 50 0 V 75" class="axis"/>
+      <g class="plot-label">
+        <text x="8" y="46">-h</text>
+        <text x="93" y="34">h</text>
+        <text x="93" y="12">1/h</text>
+      </g>
+    </g>
+    <g class="plot-dred">
+      <rect x="50" y="10" width="40" height="55" class="plotarea"/>
+    </g>
+    <g class="plot-green">
+      <text x="136" y="10" class="plot-fn" text-anchor="end">
+        ϕ<tspan font-size="6">i</tspan>'
+      </text>
+      <use xlink:href="#phip2" class="plot"/>
+    </g>
+    <g class="plot-blue">
+      <text x="148" y="10" class="plot-fn" text-anchor="end">
+        ϕ<tspan font-size="6">j</tspan>'
+      </text>
+      <use xlink:href="#phip2" class="plot" transform="translate(40,0)"/>
+    </g>
+  </svg>
+</div>
+
+<p>
+  Safely assuming that $A_{ij} = 0$ for all the other cases, we can now build the matrix:
+
+  $$\bm{A} = \frac{\epsilon}{h} \begin{pmatrix}
+  2&amp;-1&amp;&amp;&amp;&amp;\\
+  -1&amp;2&amp;-1&amp;&amp;&amp;\\
+  &amp;-1&amp;2&amp;-1&amp;&amp;\\
+  &amp;&amp;&amp;&amp;\ddots&amp;-1\\
+  &amp;&amp;&amp;&amp;-1&amp;2
+  \end{pmatrix}$$
+</p>
