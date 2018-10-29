@@ -13,14 +13,14 @@ section {
   position: relative;
   padding-left: 2.2em;
 
-  &:before {
+  &::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     width: 1.5em;
     height: 1.5em;
-    background-color: dodgerblue;
+    background-color: white;
     border-radius: 50%;
     margin-top: .15em;
   }

@@ -9,7 +9,12 @@ title: Numerical Methods Lab Cookbook
     <meta name="description" content="A very simple cookbook of numerical algorithms">
     {%- include base.html %}
     <link rel="stylesheet" href="{{ base }}/assets/style/index.css">
-    <link href="https://fonts.googleapis.com/css?family=Eczar|Proza+Libre" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Eczar|Proza+Libre" rel="stylesheet">
+    <style>
+      {%- for article in site.articles -%}
+        section#{{ article.id | split: '/' | last | prepend: 'a' }}::before { background-color: {{ article.color }}; }
+      {%- endfor -%}
+    </style>
   </head>
   <body>
     <header>
@@ -22,12 +27,12 @@ title: Numerical Methods Lab Cookbook
     </header>
     <main>
       {%- for article in site.articles -%}
-        <section>
+        <section id="{{ article.id | split: '/' | last | prepend: 'a' }}">
           <h2>{{ article.name }}</h2>
           {{ article.content | markdownify }}
           <ul>
-            {%- assign this_articles = site.article_sections | where: 'article', article.name -%}
-            {%- for section in this_articles -%}
+            {%- assign this_sections = site.article_sections | where: 'article', article.name -%}
+            {%- for section in this_sections -%}
             <li><a href="{{ base }}{{ section.url }}">{{ section.section }}</a></li>
             {%- endfor -%}
           </ul>

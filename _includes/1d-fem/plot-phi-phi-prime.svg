@@ -1,0 +1,25 @@
+<svg width="440" height="150" viewBox="0 0 220 75">
+  <g class="plot-blue">
+    <text x="0" y="10" class="plot-fn">ϕ</text>
+    <path d="M 0 65 H 100 M 50 0 V 75" class="axis"/>
+    <path d="M 10 65 L 50 10 L 90 65" class="plot"/>
+
+    <g class="plot-label">
+      <text x="8" y="73">-h</text>
+      <text x="88" y="73">h</text>
+      <text x="54" y="10">1</text>
+    </g>
+  </g>
+  <g class="plot-red" transform="translate(120,0)">
+    <text x="98" y="10" class="plot-fn" text-anchor="end">ϕ'</text>
+    <path d="M 0 37.5 H 100 M 50 0 V 75" class="axis"/>
+    <path d="M 10 37.5 V 10 H 50 V 65 H 90 V 37.5" class="plot"/>
+
+    <g class="plot-label">
+      <text x="8" y="46">-h</text>
+      <text x="88" y="34">h</text>
+      <text x="52" y="12">1/h</text>
+      <text x="35" y="66">-1/h</text>
+    </g>
+  </g>
+</svg>

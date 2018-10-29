@@ -2,10 +2,6 @@
 article: Implementing 1D FEM
 section: Obtaining the A matrix
 ---
-<!-- To allow CSS color lookup from script... -->
-<span class="dredhl"></span>
-<span class="greenhl"></span>
-
 <p>
   Last time we left off with…
 
@@ -25,33 +21,7 @@ section: Obtaining the A matrix
 <p>
   Let's plot $\phi_i(x)$ and $\phi_i'(x)$ so that we can calculate the coefficients $A_{ij} = \epsilon \int_a^b \phi_j'\phi_i'\,dx$ graphically:
 </p>
-<div class="imgh">
-  <svg width="440" height="150" viewBox="0 0 220 75">
-    <g class="plot-blue">
-      <text x="0" y="10" class="plot-fn">ϕ</text>
-      <path d="M 0 65 H 100 M 50 0 V 75" class="axis"/>
-      <path d="M 10 65 L 50 10 L 90 65" class="plot"/>
-
-      <g class="plot-label">
-        <text x="8" y="73">-h</text>
-        <text x="88" y="73">h</text>
-        <text x="54" y="10">1</text>
-      </g>
-    </g>
-    <g class="plot-red" transform="translate(120,0)">
-      <text x="98" y="10" class="plot-fn" text-anchor="end">ϕ'</text>
-      <path d="M 0 37.5 H 100 M 50 0 V 75" class="axis"/>
-      <path d="M 10 37.5 V 10 H 50 V 65 H 90 V 37.5" class="plot"/>
-
-      <g class="plot-label">
-        <text x="8" y="46">-h</text>
-        <text x="88" y="34">h</text>
-        <text x="52" y="12">1/h</text>
-        <text x="35" y="66">-1/h</text>
-      </g>
-    </g>
-  </svg>
-</div>
+<div class="imgh">{% include 1d-fem/plot-phi-phi-prime.svg %}</div>
 
 <p>
   In the case $\dredhl{i} = \dredhl{j}$ we have (noting that we can limit our integration to the interval $[x_i-h, x_i+h]$):
