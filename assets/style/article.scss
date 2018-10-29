@@ -1,3 +1,8 @@
 ---
 ---
+$color-hl-green: {{ site.text_colors.green }};
+$color-hl-blue: {{ site.text_colors.blue }};
+$color-hl-red: {{ site.text_colors.red }};
+$color-hl-dred: {{ site.text_colors.darkred }};
+
 @import 'article';
