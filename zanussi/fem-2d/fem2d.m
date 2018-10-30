@@ -29,7 +29,7 @@ for tIdx = 1:length(t)
     tCoords = p(tDef, :);
 
     if ispolycws(tCoords)
-       warning('Encountered a clockwise-defined triangle'); 
+       warning('Encountered a clockwise-defined triangle');
     end
 
     % Calculate the area of the triangle
@@ -73,38 +73,21 @@ end
 
 U = A \ F;
 
-
+close(bh);
 
 % -- Start plotting --
-bh = waitbar(0, bh, 'Initializing plot', 'WindowStyle', 'modal');
 figure('Name', '2D FEM Plot');
-uistack(bh,'top');
 hold on
 camproj('perspective');
 view(35, 30);
 
 % Plot function outline and circle boundary
-waitbar(.2, bh, 'Plotting target surface');
-fmesh(Ugen, [-1 1], 'FaceAlpha', .8);
-
-waitbar(.4, bh, 'Plotting boundary');
+trimesh(t, p(:,1), p(:,2), Ugen(p(:,1), p(:,2)), 'FaceAlpha', .8);
 fplot3(@(x) sin(pi*x), @(y) cos(pi*y), @(z) zeros(size(z)), ...
     'k', 'LineWidth', 2);
 
-% Extract coordinates of inner mesh points
-plotPts = p(I,:);
-plotPtsX = plotPts(:,1);
-plotPtsY = plotPts(:,2);
-
-% Plot reference U on these points
-waitbar(.6, bh, 'Plotting target mesh points');
-Uref = arrayfun(@(x,y) Ugen(x,y), plotPtsX, plotPtsY);
-plot3(plotPtsX, plotPtsY, Uref, 'ob', 'LineWidth', 1);
-
-% Plot computed U on these points
-waitbar(.8, bh, 'Plotting computed mesh points');
-plot3(plotPtsX, plotPtsY, U, 'x', 'LineWidth', 2);
-
-close(bh);
+% Plot computed U on inner mesh points
+innerPts = p(I,:);
+plot3(innerPts(:,1), innerPts(:,2), U, 'x', 'LineWidth', 2);
 
 path(oldpath);
