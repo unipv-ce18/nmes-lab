@@ -32,10 +32,8 @@ for tIdx = 1:length(t)
        warning('Encountered a clockwise-defined triangle'); 
     end
 
-    % Triangle area (http://www.mathopenref.com/coordtrianglearea.html)
-    area = ( tCoords(1,1)*(tCoords(2,2)-tCoords(3,2)) + ...
-             tCoords(2,1)*(tCoords(3,2)-tCoords(1,2)) + ...
-             tCoords(3,1)*(tCoords(1,2)-tCoords(2,2)) ) / 2;
+    % Calculate the area of the triangle
+    area = triarea(tCoords);
 
     % Since we are here, calculate also F contribution for this triangle,
     % the value is const. for each vertex since the barycenter is the same.
