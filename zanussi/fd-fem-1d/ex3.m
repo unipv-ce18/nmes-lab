@@ -19,7 +19,12 @@
 %     DSolve[{-eps u''[x] + beta u'[x] == x^2, u[a]==0, u[b]==0}, u[x], x]
 %   ...gives:
 %     u[x] -> (10 - 10 E^x - 6 x + 6 E x - 3 x^2 + 3 E x^2 - x^3 + E x^3)/(3 (-1 + E))
-uTgt = @(x) (10*(1-exp(x)) + (exp(1)-1)*(6*x+3*x^2+x^3))/(3*(exp(1)-1));
+%uTgt = @(x) (10*(1-exp(x)) + (exp(1)-1)*(6*x+3*x^2+x^3))/(3*(exp(1)-1));
+syms x_ eps_;
+uTgtSym(x_) = (1 - exp(x_/eps_) + 3*eps_ - 3*exp(x_/eps_)*eps_ + ...
+    6*eps_^2 - 6*exp(x_/eps_)*eps_^2 - 6*eps_^2*x_ + ...
+    6*exp(1/eps_)*eps_^2*x_ - 3*eps_*x_^2 + 3*exp(1/eps_)*eps_*x_^2 - ...
+    x_^3 + exp(1/eps_)*x_^3)/(3*(-1 + exp(1/eps_)));
 
 a = 0;
 b = 1;
@@ -27,7 +32,10 @@ h = 1/20;
 x = (a+h:h:b-h)';
 
 fGen = @(x) x.^2;
-eps = 1; beta = 1; 
+if ~exist('eps', 'var')
+    eps = 1;
+end
+beta = 1;
 
 sz = 1/h - 1;
 A = eps/h * sparse( ...
@@ -47,5 +55,6 @@ F = arrayfun(ifGen, x);
 U = AB \ F;
 
 hold on;
-fplot(uTgt, [0 1], 'r');
+uTgt = subs(uTgtSym, eps_, eps);
+fplot(@(x) double(uTgt(x)), [0 1], 'r');
 plot(x, U, 'xb');
