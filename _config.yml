@@ -15,3 +15,5 @@ text_colors:
   blue:    "#40c4ff"  # Light Blue A200
   red:     "#ffab40"  # Orange A200
   darkred: "#ff6e40"  # Deep Orange A200
+  purple:  "#ea80fc"  # Purple A100
+  teal:    "#64ffda"  # Teal A200

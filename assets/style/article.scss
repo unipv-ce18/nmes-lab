@@ -4,5 +4,7 @@ $color-hl-green: {{ site.text_colors.green }};
 $color-hl-blue: {{ site.text_colors.blue }};
 $color-hl-red: {{ site.text_colors.red }};
 $color-hl-dred: {{ site.text_colors.darkred }};
+$color-hl-purple: {{ site.text_colors.purple }};
+$color-hl-teal: {{ site.text_colors.teal }};
 
 @import 'article';

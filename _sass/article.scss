@@ -53,6 +53,18 @@ article p .katex-display {
   margin-top: 30px;
 }
 
+blockquote {
+  background-color: rgba(255, 255, 255, .1);
+  padding: .2em .4em;
+  font-size: .9em;
+  font-style: italic;
+  border-radius: 6px;
+}
+
+article blockquote {
+  margin: 30px 20px;
+}
+
 .greenhl {
   color: $color-hl-green;
 }
@@ -132,6 +144,25 @@ svg {
     }
   }
 
+  .plot-purple {
+    .plot {
+      stroke: $color-hl-purple;
+    }
+    .plotarea {
+      fill: $color-hl-purple;
+      opacity: .2;
+    }
+  }
+
+  .plot-teal {
+    .plot {
+      stroke: $color-hl-teal;
+    }
+    .plotarea {
+      fill: $color-hl-teal;
+      opacity: .2;
+    }
+  }
 }
 
 div.imgh {

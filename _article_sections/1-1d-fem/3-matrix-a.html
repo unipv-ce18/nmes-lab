@@ -19,7 +19,7 @@ section: Obtaining the A matrix
 </p>
 
 <p>
-  Let's plot $\phi_i(x)$ and $\phi_i'(x)$ so that we can calculate the coefficients $A_{ij} = \epsilon \int_a^b \phi_j'\phi_i'\,dx$ graphically:
+  Let's plot $\phi_i(x)$ and $\phi_i'(x)$ so that we can calculate the entries $A_{ij} = \epsilon \int_a^b \phi_j'\phi_i'\,dx$ graphically:
 </p>
 <div class="imgh">{% include 1d-fem/plot-phi-phi-prime.svg %}</div>
 
@@ -56,7 +56,7 @@ section: Obtaining the A matrix
 </div>
 
 <p>
-  We can similarly proceed to solve for the case $\greenhl{i} = \pm\bluehl{j}$,
+  We can similarly proceed to solve for the case $\greenhl{i} = \bluehl{j}\pm1$,
   knowing that the product is $\not=0$ only between $0$ and $h$…
 
   $$

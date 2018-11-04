@@ -1,0 +1,37 @@
+<svg width="440" height="150" viewBox="0 0 220 75">
+  <defs>
+    <path id="phimul1" d="M 10 37.5 L 50 10 V 65 L 90 37.5"/>
+  </defs>
+  <g class="plot-label">
+    <text x="54" y="20">1</text>
+    <text x="8" y="46">-h</text>
+    <text x="88" y="34">h</text>
+    <text x="52" y="12">1/h</text>
+    <text x="35" y="66">-1/h</text>
+  </g>
+  <path d="M 0 37.5 H 100 M 50 0 V 75" class="axis"/>
+  <g class="plot-blue">
+    <text x="215" y="10" class="plot-fn" text-anchor="end">
+      ϕ<tspan font-size="6">i</tspan>
+    </text>
+    <path d="M 10 37.5 L 50 20 L 90 37.5" class="plot"/>
+  </g>
+  <g class="plot-red">
+    <text x="194" y="10" class="plot-fn">
+      ϕ<tspan font-size="6">i</tspan>'
+    </text>
+    <path d="M 10 37.5 V 10 H 50 V 65 H 90 V 37.5" class="plot"/>
+  </g>
+  <g class="plot-dred" transform="translate(120,0)">
+    <path d="M 0 37.5 H 100 M 50 0 V 75" class="axis"/>
+    <use xlink:href="#phimul1" class="plot"/>
+    <use xlink:href="#phimul1" class="plotarea"/>
+    <g class="plot-label">
+      <text x="8" y="46">-h</text>
+      <text x="88" y="34">h</text>
+      <text x="52" y="12">1/h</text>
+      <text x="35" y="66">-1/h</text>
+    </g>
+  </g>
+</svg>
+
