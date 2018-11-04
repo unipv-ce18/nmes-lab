@@ -17,8 +17,10 @@
   </head>
   <body>
     <header>
-      <h1>{{ this_article.name }}</h1>
-      <h2>{{ page.section }}</h1>
+      <a title="Back to Index" href="{{ base }}">
+        <h1>{{ this_article.name }}</h1>
+        <h2>{{ page.section }}</h1>
+      </a>
     </header>
     <article>
       {{ content }}

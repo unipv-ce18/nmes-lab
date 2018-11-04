@@ -9,6 +9,10 @@ header {
   z-index: 10;
   padding: 1rem 5vw;
 
+  a {
+    color: inherit;
+  }
+
   h1, h2 {
     float: left;
     line-height: 2rem;
