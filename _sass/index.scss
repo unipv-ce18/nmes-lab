@@ -1,5 +1,7 @@
 @import 'main';
 
+$li-hover-trans-time: .3s;
+
 header em {
   display:block;
   margin: 0 20px;
@@ -28,12 +30,12 @@ section {
   h2 {
     margin-bottom: .2em;
   }
-  
+
   p {
     margin: 0;
     font-size: .9em;
   }
-  
+
   ul {
     padding: 0 30px;
     font-family: $font-sans;
@@ -42,11 +44,23 @@ section {
 
   li {
     margin: .5em 0;
+    transition: color $li-hover-trans-time, transform $li-hover-trans-time;
   }
 
   a {
     color: white;
     text-decoration: none;
+
+    transition: color $li-hover-trans-time;
+  }
+
+  li:hover {
+    color: #ffab40;
+    transform: translateX(5px);
+
+    a {
+      color: #80d8ff;
+    }
   }
 }
 
