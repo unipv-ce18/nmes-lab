@@ -1,0 +1,17 @@
+<svg width="200" height="150" viewBox="0 0 100 75">
+  <defs>
+    <path id="phip1" d="M 10 65 V 20 H 90 V 65"/>
+  </defs>
+  <g class="plot-dred">
+    <text x="98" y="10" class="plot-fn" text-anchor="end">(ϕ')²</text>
+    <path d="M 0 65 H 100 M 50 0 V 75" class="axis"/>
+    <use xlink:href="#phip1" class="plot"/>
+    <use xlink:href="#phip1" class="plotarea"/>
+
+    <g class="plot-label">
+      <text x="8" y="73">-h</text>
+      <text x="88" y="73">h</text>
+      <text x="54" y="16">1/h²</text>
+    </g>
+  </g>
+</svg>

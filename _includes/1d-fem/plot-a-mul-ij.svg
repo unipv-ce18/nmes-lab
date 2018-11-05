@@ -1,0 +1,28 @@
+<svg width="300" height="150" viewBox="0 0 150 75">
+  <defs>
+    <path id="phip2" d="M 10 37.5 V 10 H 50 V 65 H 90 V 37.5"/>
+  </defs>
+  <g>
+    <path d="M 0 37.5 H 150 M 50 0 V 75" class="axis"/>
+    <g class="plot-label">
+      <text x="8" y="46">-h</text>
+      <text x="93" y="34">h</text>
+      <text x="93" y="12">1/h</text>
+    </g>
+  </g>
+  <g class="plot-dred">
+    <rect x="50" y="10" width="40" height="55" class="plotarea"/>
+  </g>
+  <g class="plot-green">
+    <text x="136" y="10" class="plot-fn" text-anchor="end">
+      ϕ<tspan font-size="6">i</tspan>'
+    </text>
+    <use xlink:href="#phip2" class="plot"/>
+  </g>
+  <g class="plot-blue">
+    <text x="148" y="10" class="plot-fn" text-anchor="end">
+      ϕ<tspan font-size="6">j</tspan>'
+    </text>
+    <use xlink:href="#phip2" class="plot" transform="translate(40,0)"/>
+  </g>
+</svg>

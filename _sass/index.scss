@@ -83,6 +83,11 @@ footer {
     font-family: $font-sans;
     color: white;
     text-decoration: none;
+
+    transition: color .2s;
+    &:hover {
+      color: #80d8ff;
+    }
   }
   blockquote {
     margin: 0;
