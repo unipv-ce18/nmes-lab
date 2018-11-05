@@ -5,11 +5,10 @@ title: Numerical Methods Lab Cookbook
 <html>
   <head>
     <title>{{ page.title }}</title>
-    <meta charset="utf-8">
     <meta name="description" content="A very simple cookbook of numerical algorithms">
-    {%- include base.html %}
+    {% include common-headers.html -%}
+    {%- include base.html -%}
     <link rel="stylesheet" href="{{ base }}/assets/style/index.css">
-    <link href="https://fonts.googleapis.com/css?family=Eczar|Proza+Libre" rel="stylesheet">
     <style>
       {%- for article in site.articles -%}
         section#{{ article.id | split: '/' | last | prepend: 'a' }}::before { background-color: {{ article.color }}; }
@@ -50,7 +49,7 @@ title: Numerical Methods Lab Cookbook
           I am using an inverted color scheme to save both your eyes and your screen; hope you like it
         </blockquote>
       </div>
-      <pre>Last generated on {{ site.time | date: '%F %T' }}</pre>
+      <pre>Last generated on {{ site.time | date: '%F %T' }} UTC</pre>
     </footer>
   </body>
 </html>

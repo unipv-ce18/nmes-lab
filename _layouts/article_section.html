@@ -3,10 +3,10 @@
   <head>
     {%- assign this_article = site.articles | where: 'name', page.article | first %}
     <title>{{ this_article.short_name }} · {{ page.section }}</title>
-    <meta charset="utf-8">
-    {%- include base.html %}
+    <meta name="description" content="{{ this_article.excerpt | strip_html | strip_newlines }}">
+    {% include common-headers.html -%}
+    {%- include base.html -%}
     <link rel="stylesheet" href="{{ base }}/assets/style/article.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Eczar|Proza+Libre" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://unpkg.com/katex@0.10.0-rc.1/dist/katex.min.css"
           integrity="sha256-xhfwXOVSNtfqllKqZeJXC77C4gHlToAsBZ1VPuo78s0=" crossorigin="anonymous" />
     <script defer src="{{ base }}/assets/script/main.js"></script>
