@@ -109,3 +109,19 @@ section: Obtaining the A matrix
   &amp;&amp;&amp;&amp;-1&amp;2
   \end{pmatrix}$$
 </p>
+
+<blockquote>
+  <p>
+  Since we are dealing with a <i>Neumann condition</i> on the right boundary,
+  we need both to consider:
+  </p>
+  <ul>
+    <li>
+      A number of degrees of freedom equal to the number of internal nodes plus the right hand node, and;
+    </li>
+    <li>
+      The fact that only half of the last $\phi_i$ triangle is integrated;
+      so that <strong>the last $2$ in the matrix is splitted in half, and becomes $1$</strong>.
+    </li>
+  </ul>
+</blockquote>
