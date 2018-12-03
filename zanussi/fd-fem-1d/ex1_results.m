@@ -22,6 +22,8 @@ x = (a+h:h:b-h)';
 % Solve linear systems (A U = F) for U and plot
 figure('Name', sprintf('FD/FE Methods results (N = %d)', 1/h));
 
+oldpath = addpath('./common');
+
 U1fdm = fdm(x, F1gen);
 tgtplot(1, 'FDM - fun. 1', x, U1fdm, U1fTgt);
 
@@ -34,6 +36,7 @@ tgtplot(3, 'FDM - fun. 2', x, U2fdm, U2fTgt);
 U2fem = fem(x, F2gen);
 tgtplot(4, 'FEM - fun. 2', x, U2fem, U2fTgt);
 
+path(oldpath);
 
 % NOTE: The integral for the 1st function's FEM (f = -1)
 % is also constant and can be also calculated by hand:

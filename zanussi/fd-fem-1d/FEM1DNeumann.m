@@ -3,6 +3,8 @@ function U = FEM1DNeumann( N, f, gamma )
 %   U = FEM1DNEUMANN(N, F, GAMMA) calculates U over N linearly spaced
 %   points satisfying -U'' = F with boundary U(0) = 0 and U(1) = GAMMA.
 
+oldpath = addpath('./common');
+
 % Define N linearly spaced points for X
 xAll = linspace(0,1,N);
 
@@ -34,5 +36,7 @@ A(end,end) = A(end,end)/2;
 % Preped zero to U as the boundary condition in 0
 % we calculated in pts, which excluded this 1st point
 U = [0; A \ F];
+
+path(oldpath);
 
 end

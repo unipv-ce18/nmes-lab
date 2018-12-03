@@ -14,8 +14,10 @@ progBar = struct( ...
     'e', 2 * length(H), ...
     'i', 0);
 
+oldpath = addpath('./common');
 Efdm = arrayfun(@fdmError, H);
 Efem = arrayfun(@femError, H);
+path(oldpath);
 
 figure('Name', 'FDM error analysis');
 subplot(2,1,1);
