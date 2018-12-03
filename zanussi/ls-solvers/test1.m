@@ -22,7 +22,7 @@ B = [ -1
 
 % ...only making sure that det(A) equals det(An); since An is a triangular
 % matrix, det(An) is the product of the elements on its diagonal.
-assert(det(A) == prod(diag(An)), ...
+assert(iseq(det(A), prod(diag(An)), 1e-6), ...
     'det(A) should be equal to equiv. triangular matrix diagonal product');
 
 % Note: prod(diag(An)) computes faster than det(A), especially for large N
@@ -31,7 +31,7 @@ assert(det(A) == prod(diag(An)), ...
 x = substsolve(An, Bn);
 
 % Ensure that the result is the same as doing A \ B
-assert(isequal(A \ B, x), ...
+assert(iseq(A \ B, x, 1e-6), ...
     'A \ B should be equal to using backsubst on eqiv. triangular system');
 
 disp('Math is still working in this universe');
