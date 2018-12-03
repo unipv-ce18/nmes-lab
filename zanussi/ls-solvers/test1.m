@@ -28,7 +28,7 @@ assert(det(A) == prod(diag(An)), ...
 % Note: prod(diag(An)) computes faster than det(A), especially for large N
 
 % Then calculate A / B using backsubstitution on the equivalent system
-x = backsubst(An, Bn);
+x = substsolve(An, Bn);
 
 % Ensure that the result is the same as doing A \ B
 assert(isequal(A \ B, x), ...
