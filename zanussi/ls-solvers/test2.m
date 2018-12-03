@@ -28,7 +28,9 @@ Fgen = @(x) -1;
 Ubs = fem(x, Fgen, test2c_solvers('backslash'));
 Ugem = fem(x, Fgen, test2c_solvers('gem'));
 Ulu = fem(x, Fgen, test2c_solvers('lu'));
+Uluinv = fem(x, Fgen, test2c_solvers('luinv'));
 Uchol = fem(x, Fgen, test2c_solvers('chol'));
+Ucholinv = fem(x, Fgen, test2c_solvers('cholinv'));
 fprintf('\n');
 
 path(oldpath);
